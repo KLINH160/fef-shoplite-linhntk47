@@ -13,10 +13,10 @@ async function loadProducts() {
                 <div class="card h-100">
 
                     <img src="${product.image}"
-                         class="card-img-top"
+                         class="card-img-top product-image"
                          alt="${product.title}">
 
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
 
                         <h5 class="card-title">
                             ${product.title}
@@ -29,12 +29,13 @@ async function loadProducts() {
                         <p class="fw-bold text-danger">
                             $${product.price}
                         </p>
-
+                        <div class="mt-auto">
                         <a href="product.html?id=${product.id}" class="btn btn-primary">Xem chi tiết</a>
 
                         <button class="btn btn-success">
                             Thêm vào giỏ hàng
                         </button>
+                        </div>
 
                     </div>
 
