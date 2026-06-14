@@ -1,3 +1,26 @@
+function updateCartBadge() {
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const totalQuantity = cart.reduce(
+        (sum, item) => {
+            return sum + item.quantity;
+        },
+        0
+    );
+
+    const cartBadge =
+        document.getElementById("cart-badge");
+
+    cartBadge.textContent =
+        totalQuantity;
+
+}
+updateCartBadge();
+
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 
@@ -150,6 +173,7 @@ cartItems.addEventListener("click", function (e) {
         "cart",
         JSON.stringify(cart)
     );
+    updateCartBadge();
 
     renderCart();
 

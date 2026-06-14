@@ -1,3 +1,26 @@
+function updateCartBadge() {
+
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    const totalQuantity = cart.reduce(
+        (sum, item) => {
+            return sum + item.quantity;
+        },
+        0
+    );
+
+    const cartBadge =
+        document.getElementById("cart-badge");
+
+    cartBadge.textContent =
+        totalQuantity;
+
+}
+updateCartBadge();
+
 const productList = document.getElementById("product-list");
 
 async function loadProducts() {
@@ -89,6 +112,7 @@ addToCartButtons.forEach(button => {
             "cart",
             JSON.stringify(cart)
         );
+        updateCartBadge();
 
         alert("Đã thêm sản phẩm vào giỏ hàng!");
 
