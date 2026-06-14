@@ -1,15 +1,26 @@
 const cartItems = document.getElementById("cart-items");
 const cartTotal = document.getElementById("cart-total");
 
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+function renderCart() {
 
-if (cart.length === 0) {
+    const cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
 
-    cartItems.innerHTML = "<h3>Giỏ hàng của bạn đang trống</h3>";
+    if (cart.length === 0) {
 
-    cartTotal.parentElement.style.display = "none";
+        cartItems.innerHTML =
+            "<h3>Giỏ hàng của bạn đang trống</h3>";
 
-} else {
+        cartTotal.parentElement.style.display =
+            "none";
+
+        return;
+    }
+
+    cartTotal.parentElement.style.display =
+        "block";
 
     cartItems.innerHTML = cart.map(item => `
         <div class="card mb-3">
@@ -34,7 +45,23 @@ if (cart.length === 0) {
                         </p>
 
                         <p class="card-text">
-                            Số lượng: ${item.quantity}
+
+                            <button
+                                class="btn btn-sm btn-warning btn-minus"
+                                data-id="${item.id}">
+                                -
+                            </button>
+
+                            <span class="mx-2">
+                                ${item.quantity}
+                            </span>
+
+                            <button
+                                class="btn btn-sm btn-success btn-plus"
+                                data-id="${item.id}">
+                                +
+                            </button>
+
                         </p>
 
                     </div>
@@ -43,11 +70,9 @@ if (cart.length === 0) {
                 <div class="col-md-4 text-end pe-3">
 
                     <button
-                        class="btn btn-danger delete-btn"
+                        class="btn btn-danger btn-delete"
                         data-id="${item.id}">
-
                         Xóa
-
                     </button>
 
                 </div>
@@ -56,10 +81,77 @@ if (cart.length === 0) {
         </div>
     `).join("");
 
+
     const total = cart.reduce((sum, item) => {
         return sum + item.price * item.quantity;
     }, 0);
 
-    cartTotal.textContent = `$${total.toFixed(2)}`;
+    cartTotal.textContent =
+        `$${total.toFixed(2)}`;
 
 }
+
+renderCart();
+
+
+cartItems.addEventListener("click", function (e) {
+
+    const productId =
+        Number(e.target.dataset.id);
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem("cart")
+        ) || [];
+
+    if (e.target.classList.contains("btn-delete")) {
+
+        cart = cart.filter(
+            item => item.id !== productId
+        );
+
+    }
+
+    else if (e.target.classList.contains("btn-plus")) {
+
+        const product = cart.find(
+            item => item.id === productId
+        );
+
+        if (product) {
+            product.quantity++;
+        }
+
+    }
+
+    else if (e.target.classList.contains("btn-minus")) {
+
+        const product = cart.find(
+            item => item.id === productId
+        );
+
+        if (product) {
+
+            product.quantity--;
+
+            if (product.quantity <= 0) {
+
+                cart = cart.filter(
+                    item => item.id !== productId
+                );
+
+            }
+
+        }
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    renderCart();
+
+});
+
