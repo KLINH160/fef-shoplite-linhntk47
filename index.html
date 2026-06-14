@@ -47,6 +47,20 @@
         <p>Chào mừng đến với cửa hàng bán quần áo.</p>
 
         <main class="container mt-4">
+                        <div class="row mb-4">
+                <div class="col-md-6 mb-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="🔍 Tìm kiếm tên sản phẩm...">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <select id="categoryFilter" class="form-select">
+                        <option value="">Tất cả danh mục</option>
+                        <option value="men's clothing">Thời trang nam</option>
+                        <option value="women's clothing">Thời trang nữ</option>
+                        <option value="jewelery">Trang sức</option>
+                        <option value="electronics">Điện tử</option>
+                    </select>
+                </div>
+            </div>
             <div class="row" id="product-list"></div>
             
 </main>
