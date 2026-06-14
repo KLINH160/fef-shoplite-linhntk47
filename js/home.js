@@ -134,12 +134,13 @@ productList.addEventListener("click", function (e) {
     }
 });
 
-function filterProducts() {
+function handleFilterAndSort() {
 
     const keyword = searchInput.value.toLowerCase().trim();
     const category = categoryFilter.value;
+    const sortValue = sortFilter.value;
 
-    const filteredProducts = allProducts.filter(product => {
+    let result = allProducts.filter(product => {
 
         const title = (product.title || "").toLowerCase();
 
@@ -151,10 +152,17 @@ function filterProducts() {
         return matchName && matchCategory;
     });
 
-    renderProducts(filteredProducts);
+    if (sortValue === "asc") {
+        result = [...result].sort((a, b) => a.price - b.price);
+    } else if (sortValue === "desc") {
+        result = [...result].sort((a, b) => b.price - a.price);
+    }
+
+    renderProducts(result);
 }
 
-searchInput.addEventListener("input", filterProducts);
-categoryFilter.addEventListener("change", filterProducts);
+searchInput.addEventListener("input", handleFilterAndSort);
+categoryFilter.addEventListener("change", handleFilterAndSort);
+sortFilter.addEventListener("change", handleFilterAndSort);
 
 loadProducts();

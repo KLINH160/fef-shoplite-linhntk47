@@ -5,130 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">banquanao</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-                    <span class="navbar-toggler-icon"></span>
+
+<header>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top shadow navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-white" href="index.html">
+                <i class="bi bi-shop fs-4 me-2"></i>ShopLite
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.html">
+                            Giỏ hàng <i class="bi bi-cart3 fs-5"></i>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="register.html">Đăng ký</a>
+                        <span id="cart-badge" class="badge bg-danger rounded-pill">0</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6" id="form-container">
+
+            <h2 class="mb-4">Đăng ký tài khoản</h2>
+
+            <form id="register-form">
+
+                <div class="mb-3">
+                    <label for="fullName" class="form-label">Họ tên</label>
+                    <input type="text" class="form-control" id="fullName" placeholder="Nhập họ tên">
+                    <div class="text-danger"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Nhập email">
+                    <div class="text-danger"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu">
+                    <div class="text-danger"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Số điện thoại</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại">
+                    <div class="text-danger"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="city" class="form-label">Thành phố</label>
+                    <select class="form-select" id="city">
+                        <option value="">-- Chọn thành phố --</option>
+                        <option value="HN">Hà Nội</option>
+                        <option value="HCM">TP. Hồ Chí Minh</option>
+                        <option value="DN">Đà Nẵng</option>
+                    </select>
+                    <div class="text-danger" id="cityError"></div>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="agree">
+
+                    <label class="form-check-label" for="agree">
+                        Tôi đồng ý với điều khoản
+                    </label>
+
+                    <div class="text-danger"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Đăng ký
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarMenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Trang chủ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="product.html">Sản phẩm</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.html">Giỏ hàng</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register.html">Đăng ký</a>
-                    <span id="cart-badge" class="badge bg-danger rounded-pill">0</span>
-                </li>
-            </ul>
+            </form>
+
         </div>
-            </div>
+    </div>
+</main>
 
-        </nav>
-    </header>
-         <main class="container mt-5">
-            <div class="row justify-content-center">
-                <div class="col-md-6" id="form-container">
-                    <h2 class="mb-4">Đăng ký tài khoản</h2>
+<footer></footer>
 
-                        <form id="register-form">
-                        <div class="mb-3">
-                            <label for="fullName" class="form-label">
-                                Họ tên
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="fullName"
-                                placeholder="Nhập họ tên">
-
-                            <div class="text-danger"></div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="email" class="form-label">
-                                Email
-                            </label>
-
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="email"
-                                placeholder="Nhập email">
-
-                            <div class="text-danger"></div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="password" class="form-label">
-                                Mật khẩu
-                            </label>
-
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="password"
-                                placeholder="Nhập mật khẩu">
-
-                            <div class="text-danger"></div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="phone" class="form-label">
-                                Số điện thoại
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="phone"
-                                placeholder="Nhập số điện thoại">
-
-                            <div class="text-danger"></div>
-                        </div>
-
-                        <div class="form-check mb-3">
-
-                            <input
-                                class="form-check-input"
-                                type="checkbox"
-                                id="agree">
-
-                            <label
-                                class="form-check-label"
-                                for="agree">
-                                Tôi đồng ý với điều khoản
-                            </label>
-
-                            <div class="text-danger"></div>
-
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary">
-                            Đăng ký
-
-                        </button>
-                        </form>
-
-                </div>
-            </div>
-        </main>
-    <footer></footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/register.js"></script>    
+<script src="js/register.js"></script>
+
 </body>
 </html>
