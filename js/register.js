@@ -24,13 +24,11 @@ form.addEventListener("submit", function (e) {
 
     let isValid = true;
 
-    // Họ tên
     if (fullName.value.trim() === "") {
         fullNameError.textContent = "Vui lòng nhập họ tên";
         isValid = false;
     }
 
-    // Email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (email.value.trim() === "") {
@@ -42,7 +40,6 @@ form.addEventListener("submit", function (e) {
         isValid = false;
     }
 
-    // Mật khẩu
     if (password.value.trim() === "") {
         passwordError.textContent = "Vui lòng nhập mật khẩu";
         isValid = false;
@@ -52,7 +49,6 @@ form.addEventListener("submit", function (e) {
         isValid = false;
     }
 
-    // SĐT
     if (phone.value.trim() === "") {
         phoneError.textContent = "Vui lòng nhập số điện thoại";
         isValid = false;
@@ -62,7 +58,6 @@ form.addEventListener("submit", function (e) {
         isValid = false;
     }
 
-    // Checkbox
     if (!agree.checked) {
         agreeError.textContent = "Bạn phải đồng ý với điều khoản";
         isValid = false;
@@ -75,16 +70,12 @@ form.addEventListener("submit", function (e) {
 });
 
 
-// ===== Xóa lỗi khi nhập đúng =====
-
-// Họ tên
 fullName.addEventListener("input", function () {
     if (fullName.value.trim() !== "") {
         fullNameError.textContent = "";
     }
 });
 
-// Email
 email.addEventListener("input", function () {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -93,21 +84,18 @@ email.addEventListener("input", function () {
     }
 });
 
-// Mật khẩu
 password.addEventListener("input", function () {
     if (password.value.length >= 6) {
         passwordError.textContent = "";
     }
 });
 
-// Số điện thoại
 phone.addEventListener("input", function () {
     if (/^[0-9]{10}$/.test(phone.value)) {
         phoneError.textContent = "";
     }
 });
 
-// Checkbox
 agree.addEventListener("change", function () {
     if (agree.checked) {
         agreeError.textContent = "";
