@@ -32,7 +32,7 @@ async function loadProducts() {
                         <div class="mt-auto">
                         <a href="product.html?id=${product.id}" class="btn btn-primary">Xem chi tiết</a>
 
-                        <button class="btn btn-success">
+                        <button class="btn btn-success add-to-cart" data-id="${product.id}">
                             Thêm vào giỏ hàng
                         </button>
                         </div>
@@ -44,6 +44,57 @@ async function loadProducts() {
         `).join("");
 
         productList.innerHTML = html;
+        const addToCartButtons =
+    document.querySelectorAll(".add-to-cart");
+
+addToCartButtons.forEach(button => {
+
+    button.addEventListener("click", function () {
+
+        const productId =
+            Number(this.dataset.id);
+
+        const product =
+            products.find(
+                item => item.id === productId
+            );
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem("cart")
+            ) || [];
+
+        const existingProduct =
+            cart.find(
+                item => item.id === product.id
+            );
+
+        if (existingProduct) {
+
+            existingProduct.quantity++;
+
+        } else {
+
+            cart.push({
+                id: product.id,
+                title: product.title,
+                price: product.price,
+                image: product.image,
+                quantity: 1
+            });
+
+        }
+
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(cart)
+        );
+
+        alert("Đã thêm sản phẩm vào giỏ hàng!");
+
+    });
+
+});
 
     } catch (error) {
         productList.innerHTML = "<h3>Lỗi tải dữ liệu!</h3>";

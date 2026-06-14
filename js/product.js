@@ -1,20 +1,22 @@
 const productDetail = document.getElementById("product-detail");
 
-let product = null;
-
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
+
+let product = null;
 
 async function loadProductDetail() {
 
     if (!productId) {
-        productDetail.innerHTML = "<h3>Không tìm thấy sản phẩm!</h3>";
+        productDetail.innerHTML =
+            "<h3 class='text-danger'>Không tìm thấy sản phẩm!</h3>";
         return;
     }
 
     try {
 
-        productDetail.innerHTML = "<h3>Đang tải...</h3>";
+        productDetail.innerHTML =
+            "<h3>Đang tải dữ liệu...</h3>";
 
         const response = await fetch(
             `https://fakestoreapi.com/products/${productId}`
@@ -38,29 +40,26 @@ async function loadProductDetail() {
                     $${product.price}
                 </h4>
 
-                <p>
-                    ${product.description}
-                </p>
+                <p>${product.description}</p>
 
                 <button
                     id="add-to-cart"
                     class="btn btn-success">
-
                     Thêm vào giỏ hàng
-
                 </button>
 
             </div>
         `;
 
+        // Gắn sự kiện sau khi render HTML
         const addToCartBtn =
             document.getElementById("add-to-cart");
 
         addToCartBtn.addEventListener("click", function () {
 
-            let cart = JSON.parse(
-                localStorage.getItem("cart")
-            ) || [];
+            let cart =
+                JSON.parse(localStorage.getItem("cart"))
+                || [];
 
             const existingProduct = cart.find(
                 item => item.id === product.id
@@ -68,7 +67,7 @@ async function loadProductDetail() {
 
             if (existingProduct) {
 
-                existingProduct.quantity += 1;
+                existingProduct.quantity++;
 
             } else {
 
@@ -94,10 +93,10 @@ async function loadProductDetail() {
     }
     catch (error) {
 
-        productDetail.innerHTML =
-            "<h3>Lỗi tải dữ liệu sản phẩm!</h3>";
-
         console.error(error);
+
+        productDetail.innerHTML =
+            "<h3 class='text-danger'>Lỗi tải dữ liệu sản phẩm!</h3>";
 
     }
 
